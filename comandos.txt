@@ -1,0 +1,10 @@
+docker volume create vol1
+
+docker build --build-arg SPARK_VERSION=1.4.0 -t spark_image .
+
+docker run -it --rm --name spark_container -v vol1:/mnt/disk_spark spark_image
+
+df-h
+docker inspect <container id>
+
+spark-submit --master local[*] wordcount.py
